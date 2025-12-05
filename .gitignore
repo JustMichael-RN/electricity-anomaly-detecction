@@ -50,3 +50,6 @@ Thumbs.db
 # Allow the trained model (exception to data exclusions)
 !model/
 !model/*.pkl
+# Edit .gitignore and add these lines at the bottom:
+!requirements.txt
+!readme.md
