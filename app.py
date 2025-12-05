@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle
 from datetime import datetime
+import plotly.graph_objects as go
 
 # Page config
 st.set_page_config(
@@ -186,11 +187,67 @@ def main():
                     with col3:
                         st.metric("Anomaly Rate", f"{df['Is_Anomaly'].sum()/len(df)*100:.2f}%")
                     
+                    # Visualization
+                    st.subheader("📊 Anomaly Visualization")
+                    
+                    # Create scatter plot
+                    fig = go.Figure()
+                    
+                    # Normal data points
+                    normal_data = df[~df['Is_Anomaly']]
+                    fig.add_trace(go.Scatter(
+                        x=list(range(len(normal_data))),
+                        y=normal_data['Global_active_power'],
+                        mode='markers',
+                        name='Normal',
+                        marker=dict(color='green', size=8, opacity=0.6)
+                    ))
+                    
+                    # Anomaly data points
+                    anomaly_data = df[df['Is_Anomaly']]
+                    anomaly_indices = anomaly_data.index.tolist()
+                    fig.add_trace(go.Scatter(
+                        x=anomaly_indices,
+                        y=anomaly_data['Global_active_power'],
+                        mode='markers',
+                        name='Anomaly',
+                        marker=dict(color='red', size=12, symbol='x')
+                    ))
+                    
+                    fig.update_layout(
+                        title='Power Consumption: Normal vs Anomalies',
+                        xaxis_title='Record Index',
+                        yaxis_title='Global Active Power (kW)',
+                        height=500,
+                        hovermode='closest'
+                    )
+                    
+                    st.plotly_chart(fig, use_container_width=True)
+                    
+                    # Anomaly Score Distribution
+                    st.subheader("📈 Anomaly Score Distribution")
+                    fig2 = go.Figure()
+                    fig2.add_trace(go.Histogram(
+                        x=df['Anomaly_Score'],
+                        nbinsx=30,
+                        marker=dict(color='blue', opacity=0.7),
+                        name='Score Distribution'
+                    ))
+                    fig2.update_layout(
+                        title='Distribution of Anomaly Scores',
+                        xaxis_title='Anomaly Score',
+                        yaxis_title='Count',
+                        height=400
+                    )
+                    st.plotly_chart(fig2, use_container_width=True)
+                    
+                    # Data table
+                    st.subheader("📋 Detailed Results")
                     st.dataframe(df.head(20))
                     
                     csv = df.to_csv(index=False)
                     st.download_button(
-                        "Download Results",
+                        "📥 Download Results",
                         csv,
                         "anomaly_results.csv",
                         "text/csv"
