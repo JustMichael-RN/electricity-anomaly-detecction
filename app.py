@@ -14,12 +14,14 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Simpler, working CSS
+# Enhanced CSS with better contrast
 st.markdown("""
     <style>
     .stApp {
         background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
     }
+    
+    /* Metric containers */
     div[data-testid="metric-container"] {
         background: rgba(255, 255, 255, 0.95);
         border: 2px solid #7e22ce;
@@ -27,10 +29,46 @@ st.markdown("""
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+    
+    /* Tab styling for better visibility */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        border-radius: 10px;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white !important;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 12px 24px;
+        border-radius: 8px;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        color: #1e3c72 !important;
+    }
+    
+    /* Button styling */
+    .stButton button {
+        font-weight: 600;
+        font-size: 16px;
+    }
+    
+    /* File uploader */
     .uploadedFile {
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.95);
         border-radius: 10px;
         padding: 10px;
+    }
+    
+    /* Section headers */
+    .stMarkdown h4 {
+        color: #1e3c72 !important;
+        font-weight: 700;
     }
     </style>
 """, unsafe_allow_html=True)
