@@ -1,11 +1,3 @@
-You're right! Here's **FILE 2** separately:
-
----
-
-## **FILE 2: `app.py`**
-Create this file and paste:
-
-```python
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -211,4 +203,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
