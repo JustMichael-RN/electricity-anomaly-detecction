@@ -1,4 +1,5 @@
+# Edit requirements.txt to say:
 streamlit
 pandas
 numpy
-scikit-learn==1.3.0
+scikit-learn==1.7.2
