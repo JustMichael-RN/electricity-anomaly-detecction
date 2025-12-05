@@ -46,10 +46,19 @@ Thumbs.db
 
 # Environment
 .env
+<<<<<<< HEAD
+=======
+# Edit .gitignore and add these lines at the bottom:
+!requirements.txt
+!readme.md
+>>>>>>> b0fe7996eea2569a8b142fd53d65938f6e73910f
 
 # Allow the trained model (exception to data exclusions)
 !model/
 !model/*.pkl
+<<<<<<< HEAD
 # Edit .gitignore and add these lines at the bottom:
 !requirements.txt
 !readme.md
+=======
+>>>>>>> b0fe7996eea2569a8b142fd53d65938f6e73910f
